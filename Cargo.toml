@@ -1,0 +1,10 @@
+[package]
+name = "kv-weave"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+license = "MIT"
+description = "Bounded paged KV storage with prefix sharing and reference grouped-query attention"
+repository = "https://github.com/yafi-s/kv-weave"
+
+[dependencies]

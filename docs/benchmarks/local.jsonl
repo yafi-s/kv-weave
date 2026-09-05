@@ -1,0 +1,2 @@
+{"mode":"cold","requests":32,"tokens_per_request":72,"appended_tokens":2304,"allocated_pages":160,"payload_bytes":1310720,"reused_tokens":0,"prepare_us":618,"attention_us":192,"checksum":-10.545705479569733}
+{"mode":"prefix-sharing","requests":32,"tokens_per_request":72,"appended_tokens":320,"allocated_pages":36,"payload_bytes":294912,"reused_tokens":2048,"prepare_us":100,"attention_us":178,"checksum":-10.545705479569733}
