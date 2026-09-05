@@ -16,8 +16,8 @@ attention outputs. The experiment includes prefix construction; it does not load
 a language model or measure end-to-end inference throughput.
 
 Relevant to inference infrastructure at AI labs and model-serving platforms.
-Independent research prototype, built with AI assistance; no employer affiliation
-or production deployment is claimed.
+Independent research prototype; no employer affiliation or production deployment
+is claimed.
 
 ## Run
 

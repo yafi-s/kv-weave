@@ -6,5 +6,5 @@ changes should include the workload, environment, raw measurements, and a baseli
 Report limitations and regressions alongside improvements. Keep generated binaries,
 local datasets, credentials, and machine-specific configuration out of commits.
 
-The current code was developed with AI assistance; all contributions still need
-human understanding, reproducible validation, and accurate attribution.
+All contributions need human understanding, reproducible validation, and accurate
+attribution.
