@@ -8,3 +8,6 @@ description = "Bounded paged KV storage with prefix sharing and reference groupe
 repository = "https://github.com/yafi-s/kv-weave"
 
 [dependencies]
+
+[lib]
+crate-type = ["rlib", "cdylib"]

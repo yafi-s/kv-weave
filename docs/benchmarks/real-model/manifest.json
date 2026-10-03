@@ -1,0 +1,45 @@
+{
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "torch": "2.5.1+cpu",
+  "threads": 2,
+  "model": "karpathy/tinyllamas stories260K; pretrained TinyStories model",
+  "model_revision": "0bd21da7698eaf29a0d7de3992de8a46ef624add",
+  "reference_revision": "350e04fe35433e6d2941dce5a1f53308f87058eb",
+  "model_sha256": "eec953f9d0f139e894ef8996302680e64b24813c7a98425424f5c85f7cf4abb1",
+  "command": "python python/benchmark.py",
+  "trials": 72,
+  "generated_tokens_per_request": 8,
+  "source_hash_format": "sha256-lf-normalized-text",
+  "source_sha256": {
+    "python\\benchmark.py": "511645c1af659e1facb4d6bb361502263178ec6bf75b1f1af4739010484c2205",
+    "python\\demo.py": "203a2d3921a5aa18de218691cbe2a7ed537ff5402b9b004a50e642122b3cd2d0",
+    "python\\dense.py": "994d5c8cb11bfd0523e2f07f1aed90fb72de26182783e4346a217e6db75cdb29",
+    "python\\download_model.py": "696a1d869240285464ae1e800fc72bc961b796bffb70b0acbc5beb65182ee83c",
+    "python\\native.py": "42199f7c0a22be3e65cbbdffb7db927b4014a08b99f9fb98ec299860fb9944d6",
+    "python\\serving.py": "c51bd8cc6340fbfdff00138e71b857cb220828838d53fb3508ef5693d54e9a1d",
+    "python\\test_serving.py": "6825c124927b9051a9b70a172ac27f65bedf55e807ec050c0f23055994fa4ef7",
+    "src\\ffi.rs": "f4e7ba7dbf8aaa2f074f6dc6e95a15cb8cfbd4f30e789bf5d7537c01eb82b653",
+    "src\\lib.rs": "43756db57c9e0aa169acbdd5cf231ad6b3c4f1fcf7b8a49938bab3a0c6f62dff",
+    "python\\reference\\model.py": "54f35dbd347100c0066da93dfdf9f19c2ec1e8758bfffcedbdfdb09d5c343e1f",
+    "python\\reference\\LICENSE": "e87b912002f04cdfa837eaf7f70548ab79b9cb62a285495edf575f3da875aec4",
+    "python\\reference\\REVISION": "2892b717cb1e34ad2ae96e6ed7b44dbec29c3770c9f1b45e53408812ff439795",
+    "python\\reference\\ATTRIBUTION.md": "e43dfcff3a615872ceb92d456da4bd947bb788a6ad92c7060dc483d1a0b42167",
+    "python\\reference\\UPSTREAM_VERIFICATION.json": "d8281d4d678248667944fcf444bb268242907085a3a10375c06860dc3c19b663"
+  },
+  "binary_sha256": "525c5dd3ec6f2ee861755e6ea572f59f9abb4c8d9983d96f1d63be0949108cde",
+  "artifact_sha256": {
+    "trials.jsonl": "ca3a6abe5ac1a41669d616032ac5a30ebf94f4de23efd3f42d86ec60d1c4017a",
+    "summary.json": "7609eac6c2ef0dbeab8f86ac08cdf32337aa46f24af03a6841e1458db0eee1ed"
+  },
+  "limitations": [
+    "CPU only; tiny pretrained model, no quality/adoption measurement.",
+    "Microbatch projections, one prefill/decode token per active request per step.",
+    "RSS sampled at step boundaries; includes interpreter/model/allocator and previous trials.",
+    "Payload bytes are retained KV arrays at step boundaries, excluding transient dense copies; not process-memory savings.",
+    "Dense baseline uses torch.cat growth and expanded heads; not an optimized dense serving system or paging-only comparison.",
+    "Warm prefix setup is included in total throughput; TTFT begins at request submission after setup.",
+    "Tiny batch latency percentiles have few samples; repetitions are not production SLO evidence."
+  ]
+}
