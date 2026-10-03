@@ -1,6 +1,7 @@
 //! Bounded, single-layer KV storage and numerically stable CPU attention.
 //! Ownership is explicit: sequences and cached prefixes each hold page references.
 use std::collections::{HashMap, HashSet};
+pub mod ffi;
 
 #[derive(Clone, Debug, PartialEq, Eq, Hash)]
 pub struct Namespace {
@@ -312,16 +313,19 @@ impl Cache {
         };
         let pages = seq.pages[..blocks].to_vec();
         if let Some(existing) = self.prefixes.get(&key) {
-            if existing
+            let conflict = existing
                 .pages
                 .iter()
                 .zip(&pages)
-                .any(|(&a, &b)| self.pages[a].data != self.pages[b].data)
-            {
-                return Err(Error::ConflictingPrefix);
-            }
+                .any(|(&a, &b)| self.pages[a].data != self.pages[b].data);
+            // Even a rejected duplicate touched this exact key. Refresh its
+            // recency without replacing tensors, so multi-layer publishers
+            // cannot disagree on eviction solely due to floating-point ulps.
             let tick = self.tick();
             self.prefixes.get_mut(&key).unwrap().touched = tick;
+            if conflict {
+                return Err(Error::ConflictingPrefix);
+            }
             return Ok(length);
         }
         // Pin first: eviction is allowed to remove other references to these pages.

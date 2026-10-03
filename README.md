@@ -92,3 +92,9 @@ management. This is an independent, much smaller reference implementation and
 does not reproduce vLLM's kernels or performance results.
 
 MIT licensed.
+
+## Real-model CPU execution
+
+The cache now drives prefill and greedy decoding for a trained five-layer Llama
+model with a bounded microbatch scheduler, cancellation, admission and tenant
+isolation. [Architecture, reproducible commands, all 72 trials, and limitations](docs/REAL_MODEL.md).

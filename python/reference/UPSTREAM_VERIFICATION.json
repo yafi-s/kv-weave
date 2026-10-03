@@ -1,0 +1,21 @@
+{
+  "model.py": {
+    "url": "https://raw.githubusercontent.com/karpathy/llama2.c/350e04fe35433e6d2941dce5a1f53308f87058eb/model.py",
+    "sha256_upstream": "54f35dbd347100c0066da93dfdf9f19c2ec1e8758bfffcedbdfdb09d5c343e1f",
+    "sha256_local": "54f35dbd347100c0066da93dfdf9f19c2ec1e8758bfffcedbdfdb09d5c343e1f",
+    "normalized_content_equal": true
+  },
+  "LICENSE": {
+    "url": "https://raw.githubusercontent.com/karpathy/llama2.c/350e04fe35433e6d2941dce5a1f53308f87058eb/LICENSE",
+    "sha256_upstream": "e87b912002f04cdfa837eaf7f70548ab79b9cb62a285495edf575f3da875aec4",
+    "sha256_local": "e87b912002f04cdfa837eaf7f70548ab79b9cb62a285495edf575f3da875aec4",
+    "normalized_content_equal": true
+  },
+  "checkpoint_license": {
+    "model_revision": "0bd21da7698eaf29a0d7de3992de8a46ef624add",
+    "source": "https://huggingface.co/karpathy/tinyllamas/raw/0bd21da7698eaf29a0d7de3992de8a46ef624add/README.md",
+    "model_card_sha256": "f5d36081d79fc18b2b8ee80fbf05f307c30ea8d6f3ce605c3f393be29f7d8863",
+    "declared_license": "MIT"
+  },
+  "checkpoint_redistributed_in_git": false
+}
