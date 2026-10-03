@@ -51,6 +51,30 @@ class ServingTests(unittest.TestCase):
         finally:
             engine.close()
 
+    def test_aligned_prompt_is_published_for_longer_requests(self):
+        for length in (16,32,64):
+            with self.subTest(prompt_length=length):
+                engine=Engine(self.model)
+                prompt=[1]+[(i*11)%510+2 for i in range(length-1)]
+                try:
+                    seed=engine.submit('seed',prompt,1)
+                    engine.run()
+                    self.assertEqual(seed.state,'completed',seed.error)
+                    for key,tokens,tenant,reused in (
+                        ('identical',prompt,0,length-engine.page_tokens),
+                        ('extended',prompt+[51],0,length),
+                        ('other tenant',prompt+[51],1,0),
+                    ):
+                        request=engine.submit(key,tokens,1,tenant=tenant)
+                        engine.run()
+                        self.assertEqual(request.state,'completed',request.error)
+                        self.assertEqual(request.reused,reused)
+                        self.assertEqual(request.output,dense_generate(self.model,tokens,1))
+                        expected=self.model(torch.tensor([tokens]))[0,0].detach()
+                        torch.testing.assert_close(engine.last_logits[key],expected,rtol=1e-4,atol=1e-4)
+                finally:
+                    engine.close()
+
     def test_memory_admission_and_queue_bounds(self):
         engine=Engine(self.model,pages=2,max_queued=1)
         try:

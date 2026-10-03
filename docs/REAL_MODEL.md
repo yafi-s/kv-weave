@@ -50,7 +50,10 @@ callers. Integer cache handles reject stale/double releases.
 
 Prefix sharing preserves tenant isolation and copies a partial page on a fork.
 Only complete pages are published. The last prompt token is always computed to
-recover output logits; the cache does not store logits. Eight serving tests cover
+recover its logits for an identical prompt. A completed page-aligned prompt is
+also published so a longer request can reuse its full prefix. This adds cache
+residency and eviction work; the benchmark was regenerated after this fix. The
+cache does not store logits. Nine serving tests cover
 real-model logits and greedy parity, mixed-length interleaving, warmed prefix
 reuse, cancellation before/after allocation, quotas, namespace isolation,
 copy-on-write, eviction, exhaustion, concurrent cold duplicate prefixes, and
@@ -77,8 +80,8 @@ system, and timing differences do not isolate paging alone;
 the full-context reference is used for correctness, not the performance baseline.
 
 For four 96-token requests with a 64-token reusable prefix, median throughput
-including warmup was 38.82 generated tokens/s for PyTorch dense KV, 69.19 for
-native cold pages, and 89.87 with native prefix reuse. All trial greedy outputs
+including warmup was 64.17 generated tokens/s for PyTorch dense KV, 95.78 for
+native cold pages, and 139.59 with native prefix reuse. All trial greedy outputs
 matched. Peak retained KV payload was 527,360, 573,440, and 327,680 bytes,
 respectively: 37.9% less than dense or 42.9% less than native cold pages. Retained
 payload excludes transient dense copies and attention buffers. Page
@@ -86,7 +89,7 @@ rounding makes native cold storage larger than dense storage. Sampled process RS
 was about 199 MB in each mode; this is not a 38% process-memory saving.
 
 For a single short request, prefix setup did not materially improve throughput:
-native cold/prefix medians were 67.46/67.77 tokens/s, and pages used more KV
+native cold/prefix medians were 96.94/98.89 tokens/s, and pages used more KV
 payload than dense arrays. Regressions and all configurations remain in the raw
 results. RSS is sampled at step boundaries and includes the interpreter, model,
 allocator, and prior trials; it is not a precise native allocation peak or an

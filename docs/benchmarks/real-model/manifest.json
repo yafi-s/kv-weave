@@ -18,8 +18,8 @@
     "python\\dense.py": "994d5c8cb11bfd0523e2f07f1aed90fb72de26182783e4346a217e6db75cdb29",
     "python\\download_model.py": "696a1d869240285464ae1e800fc72bc961b796bffb70b0acbc5beb65182ee83c",
     "python\\native.py": "42199f7c0a22be3e65cbbdffb7db927b4014a08b99f9fb98ec299860fb9944d6",
-    "python\\serving.py": "c51bd8cc6340fbfdff00138e71b857cb220828838d53fb3508ef5693d54e9a1d",
-    "python\\test_serving.py": "6825c124927b9051a9b70a172ac27f65bedf55e807ec050c0f23055994fa4ef7",
+    "python\\serving.py": "34cacb301e55881d0594eea8ffc0a6f0de78c93e66d97a68cb95762403717627",
+    "python\\test_serving.py": "4a354b40cb60064bdb86afeec04d63562ce3e8694aa078715264967d87581f2c",
     "src\\ffi.rs": "f4e7ba7dbf8aaa2f074f6dc6e95a15cb8cfbd4f30e789bf5d7537c01eb82b653",
     "src\\lib.rs": "43756db57c9e0aa169acbdd5cf231ad6b3c4f1fcf7b8a49938bab3a0c6f62dff",
     "python\\reference\\model.py": "54f35dbd347100c0066da93dfdf9f19c2ec1e8758bfffcedbdfdb09d5c343e1f",
@@ -30,8 +30,8 @@
   },
   "binary_sha256": "525c5dd3ec6f2ee861755e6ea572f59f9abb4c8d9983d96f1d63be0949108cde",
   "artifact_sha256": {
-    "trials.jsonl": "ca3a6abe5ac1a41669d616032ac5a30ebf94f4de23efd3f42d86ec60d1c4017a",
-    "summary.json": "7609eac6c2ef0dbeab8f86ac08cdf32337aa46f24af03a6841e1458db0eee1ed"
+    "trials.jsonl": "f420b4b4b8bb2d4d3ed645cde397ecd07690f27e3bf88ec2454c0d64f6cbd113",
+    "summary.json": "24b6e3605f16f78d785b4054aacf674b4b5900dd5e8ff844a62d70f78e8c4efa"
   },
   "limitations": [
     "CPU only; tiny pretrained model, no quality/adoption measurement.",
