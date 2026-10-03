@@ -31,6 +31,17 @@ jobs:
         with:
           toolchain: '1.85.0'
       - run: cargo build --locked --release
+      - name: Verify recorded artifact bytes from the checkout
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          root = Path('docs/benchmarks/real-model')
+          manifest = json.loads((root / 'manifest.json').read_text())
+          for name, expected in manifest['artifact_sha256'].items():
+              assert hashlib.sha256((root / name).read_bytes()).hexdigest() == expected, name
+          print('Verified', len(manifest['artifact_sha256']), 'recorded artifact hashes')
+          PY
       - name: Install isolated CPU dependencies
         run: |
           python3 -m venv .ci-venv

@@ -145,7 +145,7 @@ class Engine:
             self.peak_payload_bytes=max(self.peak_payload_bytes,sum(c.stats()['payload_bytes'] for c in self.caches))
             for i,r in enumerate(batch):
                 r.cursor+=1
-                if self.sharing and r.cursor<len(r.prompt) and r.cursor%self.page_tokens==0:
+                if self.sharing and r.cursor<=len(r.prompt) and r.cursor%self.page_tokens==0:
                     for cache,seq in zip(self.caches,r.sequences):
                         try:
                             cache.publish(seq)

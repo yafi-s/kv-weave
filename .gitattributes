@@ -1,0 +1,3 @@
+
+# Preserve byte-hashed recorded evidence across operating systems.
+docs/benchmarks/real-model/** -text whitespace=cr-at-eol
